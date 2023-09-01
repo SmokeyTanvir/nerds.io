@@ -5,7 +5,7 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 
 # file path for the entries
-entries_dir = os.path.join(settings.BASE_DIR, "entries/")
+entries_dir = os.path.join(settings.BASE_DIR, "media/entries/")
 
 def list_entries():
     """

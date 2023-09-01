@@ -1,15 +1,18 @@
 from django.shortcuts import render
-import markdown
+import markdown2
 from . import util
 from django.http import HttpResponse
-
+import re
 
 def convert_to_html(md_title):
     content = util.get_entry(md_title)
+    # Render the modified Markdown content
+    html_content = markdown2.markdown(content, extras=["fenced-code-blocks"])
+
     if content == None:
         return None
     else:
-        return markdown.Markdown().convert(content)
+        return html_content
 
 def index(request):
     return render(request, "index.html", {
