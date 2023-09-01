@@ -1,8 +1,8 @@
-from django.shortcuts import render
+import re
 import markdown2
 from . import util
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import re
 
 def convert_to_html(md_title):
     content = util.get_entry(md_title)
@@ -34,6 +34,7 @@ def create(request):
         entry_title = request.POST["title"]
         entry_content = request.POST["content"]
         util.save_entry(entry_title, entry_content)
+        return redirect("index")
 
     return render(request, "create.html")
 
