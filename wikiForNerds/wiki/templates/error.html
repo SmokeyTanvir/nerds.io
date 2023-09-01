@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}404 Not Found{% endblock %}
+{% block head %}
+	<style>
+		body {
+			background-color: #ffffff;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.error-message {
+			text-align: center;
+		}
+
+		.error-message h1 {
+			font-size: 48px;
+			margin: 0;
+		}
+
+		.error-message p {
+			font-size: 18px;
+			margin: 20px 0;
+		}
+
+		.error-link {
+			color: #333;
+			text-decoration: none;
+		}
+
+		.error-link:hover {
+			text-decoration: underline;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="error-message">
+			<h1>404 Not Found</h1>
+			<p>The page you requested could not be found.</p>
+			<p><a class="error-link" href="/">Go back to homepage</a></p>
+		</div>
+	</div>
+{% endblock %}
