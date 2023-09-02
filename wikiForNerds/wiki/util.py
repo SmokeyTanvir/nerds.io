@@ -37,3 +37,12 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+def remove_entry(title):
+    """
+    Removes an encyclopedia entry by its title. If no such
+    entry exists, it does nothing.
+    """
+    filename = f"entries/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)

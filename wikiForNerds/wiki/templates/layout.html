@@ -1,40 +1,76 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-        {% block head %}
-        {% endblock %}
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script><link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1; 
+        }
+        /* Adjust the width of the search input */
+        .search {
+            width: 100%;
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">nerds.io 🤓</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create' %}">Create New Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'random_page' %}">Random Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
         <div class="row">
-            <div class="sidebar col-lg-2 col-md-3">
+            <div class="col-lg-2 col-md-3">
                 <h2>Wiki</h2>
                 <form>
-                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                    <!-- Adjusted width of the search input -->
+                    <input class="form-control search" type="text" name="q" placeholder="Search Encyclopedia">
                 </form>
-                <div>
-                    <a href="{% url 'index' %}">Home</a>
-                </div>
-                <div>
-                    <a href="{% url 'create' %}">Create New Page</a>
-                </div>
-                <div>
-                    <a href="{% url 'random_page' %}">Random Page</a>
-                </div>
-
-                {% block nav %}
-                {% endblock %}
             </div>
-            <div class="main col-lg-10 col-md-9">
+            <div class="col-lg-10 col-md-9">
                 {% block body %}
                 {% endblock %}
             </div>
         </div>
+    </main>
 
-    </body>
+    <footer class="bg-dark text-light text-center py-3">
+        &copy; {% now "Y" %} nerds.io. All Rights Reserved.
+    </footer>
+</body>
+
 </html>

@@ -36,6 +36,9 @@ def create(request):
 
     return render(request, "create.html")
 
+def delete(request, title):
+    util.remove_entry(title)
+    return redirect("index")
 
 def random(request):
     return render(request, "random.html")

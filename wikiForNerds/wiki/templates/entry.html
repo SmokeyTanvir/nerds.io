@@ -1,7 +1,23 @@
 {% extends "layout.html" %}
 
+{% block head %}
+
+{% endblock %}
+
 {% block body %}
-	{% if content %}
-		{{ content | safe}}
-	{% endif %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <!-- Back Arrow Icon -->
+                <a href="javascript:history.back()" class="back-arrow">
+                    <button class="btn btn-success">👈Go back</button>
+                </a>
+
+				<a href={% url "delete_entry" title=title %}><button class="btn btn-danger">Delete ❌</button></a>
+            </div>
+        </div>
+        {% if content %}
+            {{ content | safe }}
+        {% endif %}
+    </div>
 {% endblock %}
